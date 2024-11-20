@@ -33,7 +33,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-left: 20px; /* Space between Tetris board and score display */
+      margin-left: 20px;
+      /* Space between Tetris board and score display */
       color: #FFFFFF;
       text-align: center;
     }
@@ -130,7 +131,7 @@
       <div id="score">Score: 0</div>
     </div>
   </div>
- 
+
 
   <script>
     const canvas = document.getElementById('tetris');
@@ -430,6 +431,23 @@
       requestAnimationFrame(update);
     }
 
+    function hardDrop() {
+      let dropDistance = 0;
+      while (!collide(grid, player)) {
+        player.pos.y++;
+        dropDistance++; // Count rows dropped
+      }
+      player.pos.y--; // Move back up to the last valid position
+      player.score += dropDistance * 2; // Add bonus points
+      merge(grid, player);
+      gridSweep();
+      updateScore();
+      checkLossCondition();
+      playerReset();
+    }
+
+
+
     document.addEventListener('keydown', event => {
       if (event.key === ' ') {
         // Spacebar toggles pause
@@ -447,6 +465,8 @@
           playerMove(1);
         } else if (event.key === 'ArrowDown') {
           playerDrop();
+        } else if (event.key === 'ArrowUp') {
+          hardDrop();
         } else if (event.key === 'q') {
           playerRotate(-1);
         } else if (event.key === 'w') {

@@ -257,15 +257,23 @@
     function merge(grid, player) {
       player.matrix.forEach((row, y) => {
         row.forEach((value, x) => {
-          if (value !== 0) {
+          if (value !== 0) { // Only merge non-empty cells
             const gridY = player.pos.y + y;
-            if (gridY < gridHeight) {
-              grid[gridY][player.pos.x + x] = value;
+            const gridX = player.pos.x + x;
+
+            // Ensure gridY and gridX are within bounds
+            if (gridY >= 0 && gridY < grid.length && gridX >= 0 && gridX < grid[0].length) {
+              grid[gridY][gridX] = value;
+            } else {
+              alert('Game Over!');
+              resetGame();
+              console.error('Merge error: Attempted to merge out-of-bounds at', { gridX, gridY });
             }
           }
         });
       });
     }
+
 
     function collide(grid, player) {
       const [m, o] = [player.matrix, player.pos];

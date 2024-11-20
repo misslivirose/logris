@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LOGRIS: LOGarithmic TetRIS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <style>
     body {
       display: flex;
@@ -12,9 +16,11 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #FFE4E1, #FFFACD, #E6E6FA);
-      animation: backgroundShift 10s infinite alternate;
-      font-family: 'ArcadeFont', sans-serif;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
+      /* Creates a larger background to animate smoothly */
+      animation: rainbow 10s ease infinite;
+      font-family: 'Press Start 2P', sans-serif;
     }
 
     #container {
@@ -70,31 +76,6 @@
 
     }
 
-    @keyframes gradient {
-      0% {
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-      }
-
-      50% {
-        background: linear-gradient(135deg, #2a5298, #1e3c72);
-      }
-
-      100% {
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-      }
-    }
-
-    @keyframes pulse {
-      0% {
-        border-color: #FFFFBA;
-      }
-
-      100% {
-        border-color: #FFFFBA;
-      }
-    }
-
-
     @keyframes backgroundShift {
       0% {
         background: linear-gradient(135deg, #FFE4E1, #FFFACD, #E6E6FA);
@@ -102,6 +83,20 @@
 
       100% {
         background: linear-gradient(135deg, #FFFACD, #E6E6FA, #FFE4E1);
+      }
+    }
+
+    @keyframes rainbow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
       }
     }
 

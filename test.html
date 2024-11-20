@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris with Player Info</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      animation: gradient 5s infinite alternate;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    canvas {
+      border: 2px solid #000;
+      background: linear-gradient(135deg, #FFE4E1, #FFFACD, #E6E6FA);
+      animation: backgroundShift 10s infinite alternate;
+    }
+
+    #player-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 20px; /* Space between Tetris board and score display */
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    #player-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffcc00;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      margin-bottom: 10px;
+    }
+
+    #player-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #player-name {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #score {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+
+    @keyframes gradient {
+      0% { background: linear-gradient(135deg, #1e3c72, #2a5298); }
+      100% { background: linear-gradient(135deg, #2a5298, #1e3c72); }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <!-- Tetris Board -->
+    <canvas id="tetris" width="300" height="600"></canvas>
+
+    <!-- Player Info and Score -->
+    <div id="player-info">
+      <!-- Player Avatar -->
+      <div id="player-avatar">
+        <img src="your-image-path.png" alt="Player Avatar">
+      </div>
+
+      <!-- Player Name -->
+      <div id="player-name">Player</div>
+
+      <!-- Score Display -->
+      <div id="score">Score: 0</div>
+    </div>
+  </div>
+
+  <script>
+    // Tetris game logic goes here
+    const canvas = document.getElementById('tetris');
+    const context = canvas.getContext('2d');
+    const scoreElement = document.getElementById('score');
+
+    let player = {
+      score: 0,
+    };
+
+    function updateScore() {
+      scoreElement.innerText = `Score: ${player.score}`;
+    }
+
+    // Example: Increment score every second for demo purposes
+    setInterval(() => {
+      player.score += 10;
+      updateScore();
+    }, 1000);
+  </script>
+</body>
+</html>
